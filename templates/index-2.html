@@ -74,8 +74,8 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index-2.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Articles</a></li>
+                <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Articles</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
@@ -161,7 +161,7 @@
                                         <div class="img"
                                              style="background-image: url({{ i.auther.avatar.url }});"></div>
                                         <div class="position pl-3">
-                                            <h4 class="mb-0">{{ i.auther.first_name }}</h4>
+                                            <h4 class="mb-0">{{ i.auther.first_name }} {{ i.auther.last_name }}</h4>
                                             <span>{{ i.auther.bio }}</span>
                                         </div>
                                     </div>
@@ -174,7 +174,8 @@
             {% endfor %}
         <div class="row py-5">
             <div class="col-md-12 py-md-5 text-center">
-                <a href="blog.html" class="btn-custom-blog">View all articles <span class="fa fa-chevron-right"></span></a>
+                <a href="{% url 'blog' %}" class="btn-custom-blog">View all articles <span
+                        class="fa fa-chevron-right"></span></a>
             </div>
         </div>
     </div>

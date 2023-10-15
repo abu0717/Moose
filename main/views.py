@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import PostModel, UserModel
+from .models import PostModel, UserModel, CommentModels
 
 
 # Create your views here.
@@ -14,8 +14,15 @@ def home(request):
 
 def detail(request, pk):
     obj = PostModel.objects.filter(pk=pk)
-    print(obj)
+    comments = CommentModels.objects.filter(post_c_id=pk)
     return render(request, template_name='blog-single.html', context={
         'obj': obj,
+        'comments': comments
     })
 
+
+def blog(request):
+    obj = PostModel.objects.all()
+    return render(request, template_name='blog.html', context={
+        'obj' : obj,
+    })

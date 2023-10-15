@@ -105,7 +105,8 @@
             <div class="col-md-12 blog-wrap">
                 <div class="row no-gutters align-items-center">
                     {% for blog in obj %}
-                        <div class="col-md-6 img img-blog js-fullheight" style="background-image: url({{ blog.img.url }});">
+                        <div class="col-md-6 img img-blog js-fullheight"
+                             style="background-image: url({{ blog.img.url }});">
                         </div>
                         <div class="col-md-6">
                             <div class="text p-md-5 py-5 px-4 ftco-animate">
@@ -135,92 +136,37 @@
 
                         <div class="tag-widget post-tag-container mb-5 mt-5">
                             <div class="tagcloud">
-                                <a href="#" class="tag-cloud-link">Life</a>
-                                <a href="#" class="tag-cloud-link">Sport</a>
-                                <a href="#" class="tag-cloud-link">Tech</a>
-                                <a href="#" class="tag-cloud-link">Work</a>
+                                {% for i in obj %}
+                                    {% for j in i.tags.all %}
+                                        <a href="#" class="tag-cloud-link">{{ j }}</a>
+                                    {% endfor %}
+                                {% endfor %}
                             </div>
                         </div>
                     {% endfor %}
-                    <div class="comment-post py-5">
-                        <h3 class="mb-5">6 Comments</h3>
-                        <ul class="comment-list">
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">September 28, 2020 at 3:03pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                        laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                        enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">September 28, 2020 at 3:03pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                        laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                        enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard bio">
-                                            <img src="images/person_1.jpg" alt="Image placeholder">
-                                        </div>
-                                        <div class="comment-body">
-                                            <h3>John Doe</h3>
-                                            <div class="meta">September 28, 2020 at 3:03pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-                                                quidem laborum necessitatibus, ipsam impedit vitae autem, eum
-                                                officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
-                                                impedit necessitatibus, nihil?</p>
-                                            <p><a href="#" class="reply">Reply</a></p>
-                                        </div>
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard bio">
-                                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <h3>John Doe</h3>
-                                                    <div class="meta">September 28, 2020 at 3:03pm</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                        Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-                                                        autem, eum officia, fugiat saepe enim sapiente iste iure!
-                                                        Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply">Reply</a></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>John Doe</h3>
-                                    <div class="meta">September 28, 2020 at 3:03pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
-                                        laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
-                                        enim sapiente iste iure! Quam voluptas earum impedit necessitatibus,
-                                        nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-                        </ul>
 
+                    <div class="comment-post py-5">
+                        {% if i|length >= 1 %}
+                            <h3 class="mb-5">{{ comments|length }} Comment</h3>
+                        {% else %}
+                            <h3 class="mb-5">{{ comments|length }} Comments</h3>
+                        {% endif %}
+                        {% for i in comments %}
+                            <ul class="comment-list">
+                            <li class="comment">
+                            <div class="vcard bio">
+                                <img src="{{ i.auther.avatar.url }}" alt="Image placeholder">
+                            </div>
+                            <div class="comment-body">
+                                <h3>{{ i.auther.first_name }} {{ i.auther.last_name }}</h3>
+                                <div class="meta">{{ i.created_at }}</div>
+                                <p>{{ i.name }}</p>
+                                <p><a href="#" class="reply">Reply</a></p>
+                                <hr>
+                                <br>
+                            </div>
+                        {% endfor %}
+                        </li>
                     </div>
                     <div class="comment-form-wrap pt-5">
                         <h3 class="mb-5">Leave a comment</h3>
