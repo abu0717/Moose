@@ -1,0 +1,33 @@
+{% load  static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'main/css/signup.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="form-box">
+        <form class="form" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <span class="title">Sign up</span>
+            <span class="subtitle">Create a free account with your email.</span>
+            <div class="form-container">
+                <input type="text" class="input" placeholder="Full Name" name="first_name">
+                <input type="text" class="input" placeholder="Last Name" name="last_name">
+                <input type="file" class="input" placeholder="Img" name="img">
+                <input type="text" class="input" placeholder="Bio" name="bio">
+                <input type="text" class="input" placeholder="Username" name="username">
+                <input type="email" class="input" placeholder="Email" name="email">
+                <input type="password" class="input" placeholder="Password" name="password">
+                <input type="password" class="input" placeholder="Confirm password" name="s_password">
+            </div>
+            <button type="submit">Sign up</button>
+        </form>
+        <div class="form-section">
+            <p>Have an account? <a href="">Log in</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
