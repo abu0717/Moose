@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import PostModel, UserModel, CommentModels
+from .models import PostModel, UserModel, CommentModels, TagModels, ChangeBack
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
@@ -18,6 +18,13 @@ def home(request):
 def detail(request, pk):
     obj = PostModel.objects.filter(pk=pk)
     comments = CommentModels.objects.filter(post_c_id=pk)
+    if request.method == 'POST' and request.POST['name'].strip() != '':
+        name = request.POST['name']
+        page = pk
+        user1 = UserModel.objects.get(username=request.user)
+
+        comment = CommentModels(name=name, post_c_id=page, auther=user1)
+        comment.save()
     return render(request, template_name='blog-single.html', context={
         'obj': obj,
         'comments': comments
@@ -67,3 +74,47 @@ def login_view(request):
         else:
             pass
     return render(request, 'login.html')
+
+
+def add_post(request):
+    teg = TagModels.objects.all()
+    if request.method == 'POST':
+        title = request.POST['title']
+        img = request.FILES['img']
+        description = request.POST['description']
+        author = UserModel.objects.get(username=request.user)
+
+        post = PostModel(title=title, img=img, description=description, auther=author)
+        post.save()
+        return redirect(profile_view)
+    return render(request, template_name='post.html', context={
+        'teg': teg
+    })
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('log_in')
+
+
+def profile_view(request):
+    user = UserModel.objects.get(username=request.user)
+    blog = PostModel.objects.filter(auther_id=user.pk)
+    obj = ChangeBack.objects.filter(auther=user)
+    return render(request, template_name='profile.html', context={
+        'user': user,
+        'blog': blog,
+        'obj': obj
+    })
+
+
+def change(request):
+    if request.method == 'POST':
+        img = request.FILES['img']
+        user = UserModel.objects.get(username=request.user)
+
+        back = ChangeBack(back_img=img, auther=user)
+        back.save()
+        return redirect(profile_view)
+    return render(request, template_name='back.html', context={
+    })

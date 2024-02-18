@@ -10,7 +10,6 @@ class UserModel(models.Model):
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -28,7 +27,7 @@ class PostModel(models.Model):
     img = models.ImageField(upload_to='posts/')
     description = models.TextField()
     auther = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(TagModels)
+    tags = models.ManyToManyField(TagModels, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -44,3 +43,7 @@ class CommentModels(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
+
+class ChangeBack(models.Model):
+    back_img = models.ImageField(upload_to='back_img/', null=True, blank=True)
+    auther = models.ForeignKey(UserModel, on_delete=models.CASCADE)

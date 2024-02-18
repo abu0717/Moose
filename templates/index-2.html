@@ -77,7 +77,8 @@
                 <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="{% url 'blog' %}" class="nav-link">Articles</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">{{ request.user }}</a></li>
+                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">{{ request.user }}</a></li>
+                <li class="nav-item"><a href="{% url 'log_out' %}" class="nav-link">Log Out</a></li>
             </ul>
         </div>
     </div>

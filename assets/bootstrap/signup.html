@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="text-center">
+    <nav class="navbar navbar-expand-lg bg-success">
+        <div class="container">
+          <a class="navbar-brand w-25 h-25" href="home.html"><img src="img/Logo_of_Twitter.svg.png"  class=" w-25 h-25"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="logiin.html">Log In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="signup.html">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container pe-5 mt-5">
+        <div class="row py-4">
+          <div class=" col-md-4 offset-md-4 mt-4 d-md-flex justify-content-md-center align-items-md-center">
+            <form class="g-3 ">
+              <img src="img/Logo_of_Twitter.svg.png" class="mb-4 w-25 h-25">
+              <div class="col-md-4 w-100">
+                <label for="validationServer01" class="form-label mt-2">First name</label>
+                <input type="text" class="form-control" id="validationServer01"  placeholder="First Name">
+              </div>
+              <div class="col-md-4 w-100">
+                <label for="validationServer02" class="form-label mt-2">Last name</label>
+                <input type="text" class="form-control" id="validationServer02" placeholder="Second Name">
+              </div>
+              <div class="col-md-2 w-100">
+                <label for="validationServerUsername" class="form-label mt-2">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                  <input type="text" class="form-control" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Please choose a username.
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-10 w-100 h-50">
+                    <input type="email" class="form-control form-control mt-2" id="colFormLabel" placeholder="Email For Recovery">
+                  </div>
+                </div>
+                <div class="my-3 row">
+                  <div class="">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                  </div>
+                </div>
+                <div class="my-3 row">
+                  <div class="">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Repeat Password">
+                  </div>
+                </div>
+                <div class="row col-12">
+                  <div class="form-check ms-3">
+                    <input class="form-check-input ms-3  ms-md-5" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+                    <label class="form-check-label me-2 me-md-5" for="invalidCheck3">
+                      Agree to terms and conditions
+                    </label>
+                    <div id="invalidCheck3Feedback" class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary mt-3 w-100" type="submit">Submit form</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

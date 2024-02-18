@@ -1,0 +1,198 @@
+{% load  static %}
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/profile.css' %}">
+
+    <script nonce="abe5ebd6-b140-4ecb-9c5f-2d7638bc24d6">(function (w, d) {
+        !function (f, g, h, i) {
+            f[h] = f[h] || {};
+            f[h].executed = [];
+            f.zaraz = {deferred: [], listeners: []};
+            f.zaraz.q = [];
+            f.zaraz._f = function (j) {
+                return function () {
+                    var k = Array.prototype.slice.call(arguments);
+                    f.zaraz.q.push({m: j, a: k})
+                }
+            };
+            for (const l of ["track", "set", "debug"]) f.zaraz[l] = f.zaraz._f(l);
+            f.zaraz.init = () => {
+                var m = g.getElementsByTagName(i)[0], n = g.createElement(i), o = g.getElementsByTagName("title")[0];
+                o && (f[h].t = g.getElementsByTagName("title")[0].text);
+                f[h].x = Math.random();
+                f[h].w = f.screen.width;
+                f[h].h = f.screen.height;
+                f[h].j = f.innerHeight;
+                f[h].e = f.innerWidth;
+                f[h].l = f.location.href;
+                f[h].r = g.referrer;
+                f[h].k = f.screen.colorDepth;
+                f[h].n = g.characterSet;
+                f[h].o = (new Date).getTimezoneOffset();
+                if (f.dataLayer) for (const s of Object.entries(Object.entries(dataLayer).reduce(((t, u) => ({...t[1], ...u[1]}))))) zaraz.set(s[0], s[1], {scope: "page"});
+                f[h].q = [];
+                for (; f.zaraz.q.length;) {
+                    const v = f.zaraz.q.shift();
+                    f[h].q.push(v)
+                }
+                n.defer = !0;
+                for (const w of [localStorage, sessionStorage]) Object.keys(w || {}).filter((y => y.startsWith("_zaraz_"))).forEach((x => {
+                    try {
+                        f[h]["z_" + x.slice(7)] = JSON.parse(w.getItem(x))
+                    } catch {
+                        f[h]["z_" + x.slice(7)] = w.getItem(x)
+                    }
+                }));
+                n.referrerPolicy = "origin";
+                n.src = "https://preview.colorlib.com/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(f[h])));
+                m.parentNode.insertBefore(n, m)
+            };
+            ["complete", "interactive"].includes(g.readyState) ? zaraz.init() : f.addEventListener("DOMContentLoaded", zaraz.init)
+        }(w, d, "zarazData", "script");
+    })(window, document);</script>
+</head>
+<body>
+<div class="main-content">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index-2.html">moose</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item active"><a href="{% url 'blog' %}" class="nav-link">Articles</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link">{{ request.user }}</a></li>
+                    <li class="nav-item"><a href="{% url 'log_out' %}" class="nav-link">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+         style="min-height: 600px; background-image: url({{ obj.back_img.url }}); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+                <div class="card card-profile shadow">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                                <a href="#">
+                                    <img src="{{ user.avatar.url }}"
+                                         class="rounded-circle">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'change' %}" class="btn btn-sm btn-info mr-4">Change Background</a>
+                            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pt-md-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                    <div>
+                                        <span class="heading">10</span>
+                                        <span class="description">Posts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3>
+                                {{ user.first_name }} {{ user.last_name }}<span class="font-weight-light"></span>
+                            </h3>
+
+                            <div>
+                                <i class="ni education_hat mr-2"></i>{{ user.bio }}
+                            </div>
+                            <hr class="my-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Blog</h3>
+                            </div>
+                            <div class="col-4 text-right">
+                                <a href="{% url 'add_post' %}" class="btn btn-sm btn-primary">Add Blog</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body ">
+
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            {% for post in blog %}
+                                <div class="col-4">
+                                    <div class="card">
+                                       <img src="{{ post.img.url }}" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><a href="{% url 'detail' post.id %} " class="nav-link">{{ post.title }}</a></h5>
+                                            <p class="card-text">{{ post.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6 m-auto text-center">
+            <div class="copyright">
+                <p>Made with <a href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">Argon
+                    Dashboard</a> by Javohir And Abdullokh</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{% static "main/js/jquery.min.js" %}"></script>
+<script src="{% static 'main/js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'main/js/popper.min.js' %}"></script>
+<script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'main/js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'main/js/jquery.stellar.min.js' %}"></script>
+<script src="{% static  'main/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'main/js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'main/js/scrollax.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&amp;sensor=false"></script>
+<script src="{% static 'main/js/google-map.js' %}"></script>
+<script src="{% static 'main/js/main.js' %}"></script>
+</body>
+</html>

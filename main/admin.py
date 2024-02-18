@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserModel, PostModel, CommentModels, TagModels
+from .models import UserModel, PostModel, CommentModels, TagModels, ChangeBack
 # Register your models here.
 
 # admin.site.register(UserModel)
@@ -13,3 +13,4 @@ class UserModelAdmin(admin.ModelAdmin):
 
 admin.site.register(CommentModels)
 admin.site.register(TagModels)
+admin.site.register(ChangeBack)
